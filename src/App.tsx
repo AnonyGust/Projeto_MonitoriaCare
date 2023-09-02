@@ -9,6 +9,8 @@ import SectionOne from './components/SectionOne';
 import Popovers from './components/Popovers';
 import SectionTwo from './components/SectionTwo';
 import Progress from './components/Progress';
+import InputGenerator from './components/GeneratorInput';
+import FormPhone from './components/FormPhone';
 
 const App = () => {
   const [theme, setTheme] = usePersistedState('theme', light)
@@ -24,9 +26,10 @@ const App = () => {
       <GlobalStyle />
       <Progress />
       <Header toggleTheme={toggleTheme}/>
-      <SectionOne />
+      {/* <SectionOne /> */}
+      <FormPhone />
       <SectionTwo/>
-      {/* <Popovers /> */}
+      { /* <Popovers /> */}
     </div>
     </ThemeProvider>
   );

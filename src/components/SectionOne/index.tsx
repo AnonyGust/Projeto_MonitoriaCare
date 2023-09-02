@@ -11,7 +11,7 @@ export const SectionOne: React.FC = () => {
             <h2 className="teste">
 
             </h2>
-            <h3>Desenvolvedor Front-End</h3>
+            <h3>Monitoria</h3>
             <div className="containerBtn">
             <button className="btn1">teste <BiArrowToBottom /></button>
             <button className="btn2">Contato</button>

@@ -51,6 +51,14 @@ button:active{
   background-color: blue;
 }
 
+input{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
    /* Estilização da barra de rolagem */
    ::-webkit-scrollbar {
     width: 10px; /* Largura da barra de rolagem vertical */

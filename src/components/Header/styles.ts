@@ -7,19 +7,17 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 30px;
-  h2{
-    color: ${props => props.theme.colors.secundary};
-  }
-  li{
-    display: flex;
-
-  }
   .header{
     display: flex;
     flex-direction: row;
   }
   .dropdown {
   position: relative;
+}
+
+.container{
+  display: flex;
+  gap: 10px
 }
 
 .dropdown > button {
@@ -34,8 +32,8 @@ p{
 .dropdown button {
   display: flex;
   align-items: center;
-  gap: 10px;
-  height: 40px;
+  gap: 5px;
+  height: 30px;
   border-radius: 6px;
   color: ${(props) => props.theme.colors.primary};
   background-color: ${(props) => props.theme.colors.background};
@@ -45,6 +43,14 @@ p{
   font-family: sans-serif;
 }
 
+.dropdown .btnHeader{
+  background: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.secundary};
+  svg{
+    color:${(props) => props.theme.colors.secundary}; ;
+  }
+}
+
 .dropdown button:hover {
 }
 
@@ -52,7 +58,7 @@ p{
   position: absolute;
   overflow: hidden;
   z-index: 1;
-  top: 61px;
+  top: 43px;
   left: 0;
   width: 100%;
   opacity: 0;
@@ -64,7 +70,7 @@ p{
 }
 
 .dropdown .menu button {
-  height: 56px;
+  height: 45px;
   width: 100%;
   border-radius: 0;
 }

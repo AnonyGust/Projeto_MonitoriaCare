@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Container } from "./styles";
 import { ThemeContext } from "styled-components";
 import ThemeSwitch from "../Switch";
 import { BiChevronUp } from "react-icons/bi";
 import { BiChevronDown } from "react-icons/bi";
 import { BiPhoneCall } from "react-icons/bi";
+import { BiFileFind } from "react-icons/bi";
+import { BiPencil } from "react-icons/bi";
 
 import {
   FC,
@@ -14,16 +16,11 @@ import {
   RefObject,
   useEffect,
   useRef,
-  useState,
 } from "react";
 
 interface Props {
   toggleTheme(): void;
 }
-
-const Icon: FC<PropsWithChildren> = ({ children }) => (
-  <i className="material-symbols-outlined">{children}</i>
-);
 
 function useOnClickOutside(
   ref: RefObject<HTMLDivElement>,
@@ -44,37 +41,65 @@ function useOnClickOutside(
     };
   }, [ref, handler]);
 }
+
 export const Header: React.FC<Props> = ({ toggleTheme }) => {
-  const theme = useContext(ThemeContext);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const ref = useRef<HTMLDivElement>(null);
-  useOnClickOutside(ref, () => setIsOpen(false));
+  const [isOpenTelefone, setIsOpenTelefone] = useState<boolean>(false);
+  const [isOpenEmails, setIsOpenEmails] = useState<boolean>(false);
+
+  const telefoneRef = useRef<HTMLDivElement>(null);
+  const emailsRef = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(telefoneRef, () => setIsOpenTelefone(false));
+  useOnClickOutside(emailsRef, () => setIsOpenEmails(false));
+
   return (
     <Container>
       <>
-        <div ref={ref} className={`dropdown ${isOpen ? "open" : ""}`}>
-          <button onClick={() => setIsOpen(!isOpen)}>
-            <p>Telefone</p>
-            <Icon>{isOpen ? <BiChevronUp /> : <BiChevronDown />}</Icon>
-          </button>
-          <div className="menu">
-            <button>
-              <Icon>
+        <div className="container">
+          <div
+            ref={telefoneRef}
+            className={`dropdown ${isOpenTelefone ? "open" : ""}`}
+          >
+            <button onClick={() => setIsOpenTelefone(!isOpenTelefone)}>
+              <p>Telefone</p>
+              {isOpenTelefone ? <BiChevronUp /> : <BiChevronDown />}
+            </button>
+            <div className="menu">
+              <button className="btnHeader">
+                <BiPencil />
+                <span>Inserção manual</span>
+              </button>
+              <button className="btnHeader">
                 <BiPhoneCall />
-              </Icon>
-              <span>Profile</span>
+                <span>Procurar</span>
+              </button>
+              <button className="btnHeader">
+                <BiFileFind />
+                <span>Settings</span>
+              </button>
+            </div>
+          </div>
+
+          <div
+            ref={emailsRef}
+            className={`dropdown ${isOpenEmails ? "open" : ""}`}
+          >
+            <button onClick={() => setIsOpenEmails(!isOpenEmails)}>
+              <p>E-mails</p>
+              {isOpenEmails ? <BiChevronUp /> : <BiChevronDown />}
             </button>
-            <button>
-              <Icon>settings</Icon>
-              <span>Settings</span>
-            </button>
-            <button>
-              <Icon>lock</Icon>
-              <span>Account</span>
-            </button>
+            <div className="menu">
+              <button className="btnHeader">
+                <BiPencil />
+                <span>Inserção</span>
+              </button>
+              <button className="btnHeader">
+                <BiFileFind />
+                <span>Settings</span>
+              </button>
+            </div>
           </div>
         </div>
-
         <ThemeSwitch toggleTheme={toggleTheme} />
       </>
     </Container>
